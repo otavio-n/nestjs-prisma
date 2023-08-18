@@ -17,4 +17,8 @@ export class BookService {
     const book = await this.prisma.book.create({ data });
     return book;
   }
+
+  async findAll() {
+    return this.prisma.book.findMany({});
+  }
 }
