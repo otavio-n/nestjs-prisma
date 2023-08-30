@@ -5,7 +5,7 @@ import { PrismaService } from 'src/database/PrismaService';
 @Injectable()
 export class BookService {
   constructor(private prisma: PrismaService) {}
-  async create(data: BookDTO) {
+  async create(data: BookDTO): Promise<BookDTO> {
     const bookExists = await this.prisma.book.findFirst({
       where: { bar_code: data.bar_code },
     });
@@ -22,7 +22,7 @@ export class BookService {
     return this.prisma.book.findMany({});
   }
 
-  async update(id: string, data: BookDTO) {
+  async update(id: string, data: BookDTO): Promise<BookDTO> {
     const bookExists = await this.prisma.book.findUnique({
       where: { id },
     });
